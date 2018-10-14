@@ -1,4 +1,21 @@
 
-public class MyHashTable implements A2HashTable<T> {
+
+public class MyHashTable<T> implements A2HashTable<T> {
+
+	@Override
+	public void insert(T element) {
+		
+	}
+
+	@Override
+	public void delete(T element) {
+	
+		
+	}
+
+	@Override
+	public boolean contains(T element) {
+		return false;
+	}
 
 }
