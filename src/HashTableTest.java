@@ -3,7 +3,7 @@ public class HashTableTest {
 
 	public static void main(String[] args) {
 		System.out.println("BEGIN MARCH SPARTANS!!!!");
-		MyHashTable<Integer> hashy = new MyHashTable<Integer>();
+		MyHashTable hashy = new MyHashTable(13);
 		System.out.println("Starting");
 
 		long startTime = System.currentTimeMillis();
