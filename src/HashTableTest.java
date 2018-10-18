@@ -11,9 +11,15 @@ public class HashTableTest {
 
 		System.out.println("Checking... (no more output means success)");
 		
-		hashy.insert(59);
+		hashy.insert(31);
 		hashy.insert(21);
 		hashy.insert(23);
+		hashy.iterate();
+		System.out.println(" ");
+		System.out.println("Is 21 in the hash table: " + hashy.contains(21));
+		hashy.delete(21);
+		hashy.iterate();
+		System.out.println("Is 21 in the hash table: " + hashy.contains(21));
 
 		long endTime = System.currentTimeMillis();
 
