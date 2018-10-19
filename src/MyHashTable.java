@@ -8,13 +8,11 @@ public class MyHashTable<AnyType> implements A2HashTable {
 
     public MyHashTable() {
         this(DEFAULT_TABLE_SIZE);
-        System.out.println("Created table!");
     }
 
     // lambda is currentSize / array.length()
     public MyHashTable(double limit) {
         newCells(limit);
-        System.out.println("Created table!");
         emptyCells();
     }
 

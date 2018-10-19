@@ -1,13 +1,12 @@
-
-
-
 public class MyItinerary implements A2Itinerary<A2Direction> {
 	
 	private A2Direction[] path;
+	private MyHashTable<Coordinates> mht;
 	private Coordinates coords;
-	private int left, right, up, down, width, height;
+	private int minX, minY, maxX, maxY, x, y, width, height;
 	
 	public MyItinerary(A2Direction[] course) {
+		mht = new MyHashTable(1021);
 		coords = new Coordinates();
 		path = course;
 		iterate();
@@ -26,35 +25,19 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 				path[i] = A2Direction.LEFT;
 			}
 		}
+		iterate();
 		return path;
 	}
 
 	@Override
-	public int widthOfItinerary() {
-		int diff = Math.abs((left-right));
-		int currentWidth;
-		
-		if(diff == 0) {
-			return left;
-		} else if(diff % 2 == 1) {
-			currentWidth = ((left + right)/2) + 1;
-		} else {
-			if(right < left) {
-				currentWidth = left;
-			}
-			else {
-				currentWidth = right;
-			}
-			
-		}
-		
-		return currentWidth;
+	public int widthOfItinerary() {		
+		return maxX-minX;
 	}
 
 	@Override
 	public int heightOfItinerary() {
 		
-		return 0;
+		return maxY-minY;
 	}
 
 	@Override
@@ -63,16 +46,45 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 		return null;
 	}
 	
+	private void addToTable(int a, int b) {
+		Coordinates move = new Coordinates();
+		move.setX(a);
+		move.setY(b);
+		mht.insert(move);
+	}
+	
 	public void iterate() {
+		minX = 0;
+		minY = 0;
+		maxX = 0;
+		maxY = 0;
+		x = 0;
+		y = 0;
 		for(A2Direction a : path) {
 			if(a == A2Direction.LEFT) {
-				left++;
+				x--;
+				if(x < minX) {
+					minX = x;
+				}
+				addToTable(x,y);
 			} else if(a == A2Direction.UP) {
-				up++;
+				y++;
+				if(y > maxY) {
+					maxY = y;
+				}
+				addToTable(x,y);
 			} else if(a == A2Direction.RIGHT) {
-				right++;
+				x++;
+				if(x > maxX) {
+					maxX = x;
+				}
+				addToTable(x,y);
 			} else {
-				down++;
+				y--;
+				if(y < minY) {
+					minY = y;
+				}
+				addToTable(x,y);
 			}
 			System.out.print(a + " ");
 		}
@@ -87,6 +99,18 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 			
 		}
 		
+		public int getX () {
+			return x;
+		}
+		public void setX (int value) {
+			x = value;
+		}
+		public int getY () {
+			return y;
+		}
+		public void setY (int value) {
+			y = value;
+		}
 	}
     
 }
