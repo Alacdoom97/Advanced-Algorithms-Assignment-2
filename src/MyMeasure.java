@@ -5,6 +5,8 @@ public class MyMeasure implements A2Measure {
 	public boolean isSameCollection(int[] array1, int[] array2) {
 		if(array1.length != array2.length) {
 		return false;
+		} else if (array1.equals(array2)) {
+			return true;
 		}
 		return false;
 	}

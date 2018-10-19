@@ -4,7 +4,7 @@ public class MyHashTable<AnyType> implements A2HashTable {
 
     private static final int DEFAULT_TABLE_SIZE = 17;
     private HashEntry<AnyType>[] array;
-    private int currentSize;
+    private int currentSize = 0;
 
     public MyHashTable() {
         this(DEFAULT_TABLE_SIZE);
@@ -24,6 +24,7 @@ public class MyHashTable<AnyType> implements A2HashTable {
             return;
         }
         array[currentPos] = new HashEntry(element, true);
+        currentSize++;
         if (currentSize / array.length > 0.5)  //Load factor has surpassed the limit of 0.5. Rehash to guarantee an empty position
         {
             rehash();
@@ -35,6 +36,7 @@ public class MyHashTable<AnyType> implements A2HashTable {
         int currentPos = findPos(element);
         if (isActive(currentPos)) {
             array[currentPos].isActive = false;
+            currentSize--;
         }
     }
 
@@ -81,8 +83,12 @@ public class MyHashTable<AnyType> implements A2HashTable {
         }
         return value;
     }
+    
+    public int getSize() {
+    	return currentSize;
+    }
 
-    private void emptyCells() {
+    public void emptyCells() {
         currentSize = 0;
         for (int i = 0; i < array.length; i++) {
             array[i] = null;
