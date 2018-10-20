@@ -9,7 +9,7 @@ public class MeasureTest {
 		
 		
 		if(mm.isSameCollection(array1, array2)) {
-			System.out.println("The colection is the same!");
+			System.out.println("The collection is the same!");
 		}
 		else {
 			System.out.println("The collections are not the same!");

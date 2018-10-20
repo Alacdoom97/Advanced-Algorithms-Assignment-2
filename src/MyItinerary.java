@@ -1,10 +1,13 @@
+import java.util.Arrays;
+
 public class MyItinerary implements A2Itinerary<A2Direction> {
 	
 	private A2Direction[] path;
-	private String[] intersection = new String[100];
+	private int[] intersection = new int[100];
 	private MyHashTable<Coordinates> mht;
 	private Coordinates coords;
-	private int minX, minY, maxX, maxY, x, y, width, height, counter;
+	private int minX, minY, maxX, maxY, x, y, counter;
+	private int count;
 	
 	public MyItinerary(A2Direction[] course) {
 		mht = new MyHashTable();
@@ -44,15 +47,7 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 
 	@Override
 	public int[] getIntersections() { 
-		int[] section = new int[100];
-		int count = 0;
-		for (int i = 0; i < intersection.length; i++) {
-			if(intersection[i] != null) {
-				section[count] = i;
-				count++;
-			}
-		}
-		return section;
+		return intersection;
 	}
 	
 	private void addToTable(int a, int b) {
@@ -63,7 +58,8 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 		if(!mht.contains(convert)) {
 		mht.insert(convert);
 		} else {
-			intersection[counter] = convert;
+			intersection[count] = counter;
+			count++;
 		}
 	}
 	
@@ -75,6 +71,10 @@ public class MyItinerary implements A2Itinerary<A2Direction> {
 		x = 0;
 		y = 0;
 		counter = 0;
+		count = 0;
+		for (int i = 0; i < intersection.length; i++) {
+			intersection[i] = 0;
+		}
 		for(A2Direction a : path) {
 			if(a == A2Direction.LEFT) {
 				x--;

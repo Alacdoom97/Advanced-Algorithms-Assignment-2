@@ -13,7 +13,7 @@ public class ItineraryTest {
 		System.out.print("[");
 		for (int i = 0; i < mi.getIntersections().length; i++) {
 			if (mi.getIntersections()[i] != 0) {
-				System.out.print(mi.getIntersections()[i] + ", ");
+				System.out.print(mi.getIntersections()[i] + ",");
 			}
 		}
 		System.out.println("]");
