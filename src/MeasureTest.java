@@ -21,7 +21,7 @@ public class MeasureTest {
 		} else {
 			System.out.println("sum of the differences squared: " + summ);
 		}
-		int[] temp = mm.getPercentileRange(array3, 25, 55);
+		int[] temp = mm.getPercentileRange(array3, 90, 100);
 		System.out.print("[ ");
 		for(int i = 0; i < temp.length; i++) {
 			if (temp[i] != 0) {

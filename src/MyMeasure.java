@@ -44,6 +44,9 @@ public class MyMeasure implements A2Measure {
 
 	@Override
 	public int[] getPercentileRange(int[] arr, int lower, int upper) {
+		if (lower > upper) {
+			System.err.println("Error! The Lower Percentile cannot be greater than the Upper Percentile!");
+		} else {
 		checkSingleArray(arr);
 		int[] percentArray = sortArray(arr, max1);
 		int[] newArray = new int[arr.length];
@@ -52,13 +55,20 @@ public class MyMeasure implements A2Measure {
 		float fHigher = upper;
 		int lowPer = Math.round(fLower/100 * arrLength);
 		int highPer = Math.round(fHigher/100 * arrLength);
-		
+		if(lowPer == 0 || lowPer == 9) {
 		for (int i = lowPer; i < highPer; i++) {
 			newArray[i] = percentArray[i];
+		}
+		} else {
+			for (int i = lowPer-1; i < highPer; i++) {
+				newArray[i] = percentArray[i];
+			}
 		}
 		
 		
 		return newArray;
+		}
+		return null;
 	}
 
 	public void checkArray(int[] arr, int[] arr2) {
